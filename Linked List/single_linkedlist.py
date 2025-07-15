@@ -181,15 +181,24 @@ class LinkedList:
             print("Empty LinkedList")
             return
         else:
+            # we are swapping/sorting the Nodes according to data not address
             while curr is not None:
                 index = curr.next
+                print(f"Came to outer loop with curr = {curr.data if curr is not None else 'Null'} and index = {index.data if index is not None else 'Null'}")
                 while index is not None:
+                    print("Inside Inner Loop")
+                    print(f"Before Swap curr = {curr.data}, index = {index.data}")
                     if curr.data > index.data:
                         temp = curr.data
                         curr.data = index.data
                         index.data = temp
-                    index = index.next
-                curr = curr.next
+                    print(f"After Swap curr = {curr.data}, index = {index.data}")
+                    index = index.next # inner loop ++
+                    print(f"New Index {index.data if index is not None else 'Null'}")
+                print("Exited Inner Loop")
+                curr = curr.next # outer loop ++
+                print(f"New curr {curr.data if curr is not None else 'Null'}")
+
 
 if __name__ == "__main__":
     """
@@ -238,3 +247,79 @@ if __name__ == "__main__":
     
     lk.sort_linked_list()
     lk.print_linkedlist()
+
+
+"""
+SORTED LINKED LIST OUTPUT
+
+data point entry for linked list:
+4 2 5 1 3 <= INPUT
+
+Came to outer loop with curr = 4 and index = 2
+Inside Inner Loop
+Before Swap curr = 4, index = 2
+After Swap curr = 2, index = 4
+New Index 5
+--
+Inside Inner Loop
+Before Swap curr = 2, index = 5
+After Swap curr = 2, index = 5
+New Index 1
+--
+Inside Inner Loop
+Before Swap curr = 2, index = 1
+After Swap curr = 1, index = 2
+New Index 3
+--
+Inside Inner Loop
+Before Swap curr = 1, index = 3
+After Swap curr = 1, index = 3
+New Index Null
+Exited Inner Loop
+New curr 4
+----------------------------------------------
+Came to outer loop with curr = 4 and index = 5
+Inside Inner Loop
+Before Swap curr = 4, index = 5
+After Swap curr = 4, index = 5
+New Index 2
+--
+Inside Inner Loop
+Before Swap curr = 4, index = 2
+After Swap curr = 2, index = 4
+New Index 3
+--
+Inside Inner Loop
+Before Swap curr = 2, index = 3
+After Swap curr = 2, index = 3
+New Index Null
+Exited Inner Loop
+New curr 5
+----------------------------------------------
+Came to outer loop with curr = 5 and index = 4
+Inside Inner Loop
+Before Swap curr = 5, index = 4
+After Swap curr = 4, index = 5
+New Index 3
+--
+Inside Inner Loop
+Before Swap curr = 4, index = 3
+After Swap curr = 3, index = 4
+New Index Null
+Exited Inner Loop
+New curr 5
+----------------------------------------------
+Came to outer loop with curr = 5 and index = 4
+Inside Inner Loop
+Before Swap curr = 5, index = 4
+After Swap curr = 4, index = 5
+New Index Null
+Exited Inner Loop
+New curr 5
+-------------------------------------------------
+Came to outer loop with curr = 5 and index = Null
+Exited Inner Loop
+New curr Null
+
+1->2->3->4->5-> OUTPUT
+"""

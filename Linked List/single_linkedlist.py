@@ -157,6 +157,26 @@ class LinkedList:
         temp.next = temp.next.next
      
 
+    "SEARCH LINKEDLIST"
+    def search_linked_list_from_data(self, data):
+        if self.head is None:
+            print("Empty LinkedList")
+            return False
+        
+        temp = self.head
+        while temp:
+            if temp.data == data:
+                return True
+            temp = temp.next
+        return False
+
+
+    "SORT LINKEDLIST"
+    def sort_linked_list(self):
+        pass
+    
+
+
 if __name__ == "__main__":
     """
         --- create nodes ---
@@ -187,10 +207,17 @@ if __name__ == "__main__":
     # lk.insert_node_at_middle(6, 1)
     # lk.print_linkedlist()
 
-    print(lk.node_count())
+    # print(lk.node_count())
 
     # lk.delete_node_at_start()
     # lk.delete_node_at_end()
-    lk.print_linkedlist()
-    lk.delete_node_at_middle(3)
-    lk.print_linkedlist()
+    # lk.print_linkedlist()
+    # lk.delete_node_at_middle(3)
+    # lk.print_linkedlist()
+
+    ipt = int(input("data to search ?"))
+    result = lk.search_linked_list_from_data(ipt)
+    if result:
+        print("found")
+    else:
+        print("not found")

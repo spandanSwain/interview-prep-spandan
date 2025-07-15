@@ -173,9 +173,23 @@ class LinkedList:
 
     "SORT LINKEDLIST"
     def sort_linked_list(self):
-        pass
-    
+        curr = self.head
+        index: Node | None = None
+        temp: int | None
 
+        if self.head is None:
+            print("Empty LinkedList")
+            return
+        else:
+            while curr is not None:
+                index = curr.next
+                while index is not None:
+                    if curr.data > index.data:
+                        temp = curr.data
+                        curr.data = index.data
+                        index.data = temp
+                    index = index.next
+                curr = curr.next
 
 if __name__ == "__main__":
     """
@@ -215,9 +229,12 @@ if __name__ == "__main__":
     # lk.delete_node_at_middle(3)
     # lk.print_linkedlist()
 
-    ipt = int(input("data to search ?"))
-    result = lk.search_linked_list_from_data(ipt)
-    if result:
-        print("found")
-    else:
-        print("not found")
+    # ipt = int(input("data to search ?"))
+    # result = lk.search_linked_list_from_data(ipt)
+    # if result:
+    #     print("found")
+    # else:
+    #     print("not found")
+    
+    lk.sort_linked_list()
+    lk.print_linkedlist()

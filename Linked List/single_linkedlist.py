@@ -173,9 +173,9 @@ class LinkedList:
 
     "SORT LINKEDLIST"
     def sort_linked_list(self):
-        curr = self.head
+        curr = self.head # outer loop initialisation
         index: Node | None = None
-        temp: int | None
+        temp: int | None # temporary variable for swapping
 
         if self.head is None:
             print("Empty LinkedList")

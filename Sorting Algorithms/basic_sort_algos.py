@@ -57,11 +57,13 @@ def bubble_sort(arr):
         swapped = False
         print(f"\n✅ Pass {i + 1}:")
         for j in range(n - i - 1):
+            # why n-i-1?
+            # after every i passes, i items are already sorted in ascending
             print(f"  🔍 Compare arr[{j}] = {arr[j]} and arr[{j+1}] = {arr[j+1]}")
             if arr[j] > arr[j + 1]:
                 print(f"  👉 Swap {arr[j]} and {arr[j+1]}")
                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
-                swapped = True
+                swapped = True # so that we don't do n-1 passes each time, even if no swapping is required
             else:
                 print(f"  ❌ No swap needed")
         

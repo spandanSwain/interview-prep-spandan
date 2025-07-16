@@ -169,14 +169,19 @@ class CircularLinkedList:
         
         while True:
             swapped = 0
-            curr = self.head
+            curr = self.head # initialize i
             while curr.next!=end and curr.next!=self.head: # n-1-i
+                print(f"Before swap curr = {curr.data}, curr.next = {curr.next.data}")
                 if curr.data > curr.next.data:
                     curr.data, curr.next.data = curr.next.data, curr.data
                     swapped = 1
+                    print(f"After swap curr = {curr.data}, curr.next = {curr.next.data}")
                 curr = curr.next
+                print(f"New curr = {curr.data}")
             end = curr
+            print(f"Exited inner loop and end = {end.data}\n")
             if swapped == 0:
+                print("All items are sorted ... Exiting program")
                 break
 
 
@@ -214,3 +219,47 @@ if __name__ == "__main__":
     print(lkList[0]) # <__main__.Node object at 0x0000021B51CAF250>
     print(lkList[len(lkList)-1].next) # <__main__.Node object at 0x0000021B51CAF250>
     """
+
+"""
+OUTPUT:
+enter data for circular linked list: 
+4 2 5 1 3 
+4->2->5->1->3->4[HEAD] {before swap}
+
+Before swap curr = 4, curr.next = 2
+After swap curr = 2, curr.next = 4
+New curr = 4
+Before swap curr = 4, curr.next = 5
+New curr = 5
+Before swap curr = 5, curr.next = 1
+After swap curr = 1, curr.next = 5
+New curr = 5
+Before swap curr = 5, curr.next = 3
+After swap curr = 3, curr.next = 5
+New curr = 5
+Exited inner loop and end = 5
+
+Before swap curr = 2, curr.next = 4
+New curr = 4
+Before swap curr = 4, curr.next = 1
+After swap curr = 1, curr.next = 4
+New curr = 4
+Before swap curr = 4, curr.next = 3
+After swap curr = 3, curr.next = 4
+New curr = 4
+Exited inner loop and end = 4
+
+Before swap curr = 2, curr.next = 1
+After swap curr = 1, curr.next = 2
+New curr = 2
+Before swap curr = 2, curr.next = 3
+New curr = 3
+Exited inner loop and end = 3
+
+Before swap curr = 1, curr.next = 2
+New curr = 2
+Exited inner loop and end = 2
+
+All items are sorted ... Exiting program
+1->2->3->4->5->1[HEAD] {after swap}
+"""

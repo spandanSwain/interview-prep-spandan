@@ -149,15 +149,50 @@ class CircularLinkedList:
         temp.next = temp.next.next
 
 
-    "SEARCH DATA FROM ALL NODES (try binary else go with linear)"
+    "SEARCH DATA FROM ALL NODES"
+    "Linear Search"
     def search_linked_list_from_data_linear(self, data):
         temp = self.head
+        i = 1
         while temp:
             if data == temp.data:
-                return True
+                return i
+            temp = temp.next
+            i+=1
+            if temp == self.head:
+                return -1
+    
+    "Binary Search: Sort the linkedlist then search, but here as I am doing call by reference (passing self and modifying the whole linkedlist) so the final linkedlist is sorted, to avoid this, better create a clone linkedlist function and use that clone/copy to find the item or just sort the linkedlist and find the item"
+    "Binary Search"
+    """
+    Logic for binary search:
+    i=0, j=len(a)-1
+    while i<j: mid = (i+j)//2 if a[mid]==key found, 
+    if key<a[mid] find from left, make j = mid-1,
+    else if key>a[mid] find from right, make i = mid+1,
+    after end of while loop return -1 not found
+    """
+    def search_linked_list_from_data_binary(self, data):
+        self.sort_linked_list() # for binary sort always sort the data
+        # after all these, I conclude that no we cannot do binary sort in circular linked list
+        # as it will take O(n log n), thus go for linear search
+        print("Cannot perform circular linked list as it is not optimal")
+    
+    """
+    Clone LinkedList
+    """
+    def clone_linkedlist(self):
+        new_lkList = CircularLinkedList()
+        temp = self.head
+        if temp is None: # if the original list is empty, return the empty linkedlist
+            return new_lkList
+        
+        while True:
+            new_lkList.insert_node_at_end(temp.data)
             temp = temp.next
             if temp == self.head:
-                return False
+                break
+        return new_lkList
 
 
     "SORT LINKEDLIST"
@@ -198,7 +233,7 @@ if __name__ == "__main__":
             lkList[j].next = lkList[j+1]
         lkList[len(lkList)-1].next = lkList[0]
     
-    lk.print_linkedlist()
+    # lk.print_linkedlist()
     # lk.insert_node_at_start("newnode at start")
     # lk.insert_node_at_end("newnode at end")
     # print(f"Total {lk.node_count()} Node(s) added")
@@ -208,10 +243,27 @@ if __name__ == "__main__":
     
     # lk.delete_node_at_start()
     # lk.delete_node_at_end()
-    # lk.delete_node_at_middle(3) # try for 1 2 3 4 5
+    # lk.delete_node_at_middle(3) # try for 1 2 3 4 5    
+        
+    # lk.sort_linked_list()
 
-    # print(lk.search_linked_list_from_data_linear(4))
-    lk.sort_linked_list()
+
+    # LINEAR SEARCH IMPLEMENTATION
+    """
+    suppose list is 1 2 3 4, at pos1 we have 1, pos2 we have 2 and so on, linear search simply returns the position where we found the key, works on both sorted and unsorted data strcutures
+    """
+    # key = 4
+    # result = lk.search_linked_list_from_data_linear(key)
+    # if result!=-1:
+    #     print(f"Found {key} at position {result}")
+    # else:
+    #     print(f"Item not found")
+
+
+    # BINARY SEARCH IMPLEMENTATION
+    copy = lk.clone_linkedlist() # apply binary sort to this
+    copy.search_linked_list_from_data_binary(4)
+    # cloning a linkedList, the "copy" is an object of CircularLinkedList class like "lk" 
     lk.print_linkedlist()
 
     """

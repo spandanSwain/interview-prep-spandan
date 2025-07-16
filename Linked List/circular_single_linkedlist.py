@@ -262,7 +262,7 @@ if __name__ == "__main__":
 
     # BINARY SEARCH IMPLEMENTATION
     copy = lk.clone_linkedlist() # apply binary sort to this
-    copy.search_linked_list_from_data_binary(4)
+    # copy.search_linked_list_from_data_binary(4)
     # cloning a linkedList, the "copy" is an object of CircularLinkedList class like "lk" 
     lk.print_linkedlist()
 

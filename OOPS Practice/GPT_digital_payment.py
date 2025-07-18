@@ -76,7 +76,7 @@ if __name__ == "__main__":
 
 
 """
-In this example, 
+In this example,
     the getter (@property) returns the value of _balance
     the setter (@variable.setter) writes the value of balance
 these are triggered when the functions like "auth_users()" and "process_payment()" use balance (not _balance)
